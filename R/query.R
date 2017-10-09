@@ -10,7 +10,10 @@
 #'
 #' @export
 #'
-query_gis <- function(gis_path, query, crs){
+query_gis <- function(gis_path = NA, query, crs){
+  if(is.na(gis_path)){
+    gis_path <- options("gis_path")$gis_path
+  }
   dat <- as.data.frame(vapour_read_attributes(gis_path, sql = query),
                        stringsAsFactors = FALSE)
   dat <- dplyr::mutate(dat,

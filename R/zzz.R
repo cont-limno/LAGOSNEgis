@@ -1,1 +1,4 @@
-gis_path <- "/home/jose/Documents/Science/Data/lagos_gis/lagos_gis.gpkg"
+
+.onLoad <- function(lib, pkg){
+  options("gis_path" = "/home/jose/Documents/Science/Data/lagos_gis/lagos_gis.gpkg")
+}
