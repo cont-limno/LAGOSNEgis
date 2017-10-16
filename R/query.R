@@ -43,5 +43,7 @@ query_wbd <- function(lagoslakeid, crs = NA){
     query = paste0("SELECT * FROM LAGOS_NE_All_Lakes_4ha WHERE lagoslakeid=",
                    lagoslakeid), crs = crs)
 
-  sf::st_union(st_geometry(iws), st_geometry(lake_boundary))
+  res <- sf::st_union(st_geometry(iws), st_geometry(lake_boundary))
+
+  nhdR::toUTM(res)
 }
