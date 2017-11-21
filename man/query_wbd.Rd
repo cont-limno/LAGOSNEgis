@@ -6,6 +6,11 @@
 \usage{
 query_wbd(lagoslakeid, crs = NA)
 }
+\arguments{
+\item{lagoslakeid}{numeric}
+
+\item{crs}{projection string or epsg code}
+}
 \description{
 Query watershed boundary for LAGOS lakes
 }

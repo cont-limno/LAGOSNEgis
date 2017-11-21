@@ -27,6 +27,9 @@ query_gis <- function(gis_path = NA, query, crs){
 
 #' Query watershed boundary for LAGOS lakes
 #'
+#' @param lagoslakeid numeric
+#' @param crs projection string or epsg code
+#'
 #' @importFrom sf st_union
 #' @export
 #' @examples \dontrun{
