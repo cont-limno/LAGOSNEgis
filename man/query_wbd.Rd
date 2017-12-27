@@ -4,7 +4,7 @@
 \alias{query_wbd}
 \title{Query watershed boundary for LAGOS lakes}
 \usage{
-query_wbd(lagoslakeid, crs = NA)
+query_wbd(lagoslakeid, gis_path = NA, crs = NA)
 }
 \arguments{
 \item{lagoslakeid}{numeric}
