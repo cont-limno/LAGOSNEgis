@@ -4,7 +4,7 @@ Version: 0.1
 Authors@R: person("Joseph", "Stachelek", role = c("aut", "cre"), 
  email = "stachel2@msu.edu")
 Description: Extra Functions to Supplement LAGOS.
-Imports: vapour, LAGOS, sf, dplyr, nhdR
+Imports: vapour, LAGOSNE, sf, dplyr, nhdR
 Depends: R (>= 3.4.1)
 License: GPL
 Encoding: UTF-8
