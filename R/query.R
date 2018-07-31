@@ -33,10 +33,12 @@ query_gis <- function(gis_path = NA, query, crs){
 #' @param gis_path file.path to LAGOSNE GIS gpkg
 #' @param crs projection string or epsg code
 #'
-#' @importFrom sf st_union
+#' @importFrom sf st_union st_geometry<-
 #' @export
 #' @examples \dontrun{
-#' res <- query_wbd(lagoslakeid = 7429)
+#' library(sf)
+#' res <- query_wbd(lagoslakeid = c(5371, 4559))
+#' plot(res)
 #' }
 query_wbd <- function(lagoslakeid, gis_path = NA, crs = NA){
   if(is.na(crs)){
@@ -44,13 +46,20 @@ query_wbd <- function(lagoslakeid, gis_path = NA, crs = NA){
   }
 
   iws <- query_gis(gis_path,
-    query = paste0("SELECT * FROM IWS WHERE lagoslakeid=",
-                  lagoslakeid), crs = crs)
+    query = paste0("SELECT * FROM IWS WHERE lagoslakeid IN ('",
+                   paste0(lagoslakeid,
+                          collapse = "', '"), "');"), crs = crs)
   lake_boundary <- query_gis(gis_path,
-    query = paste0("SELECT * FROM LAGOS_NE_All_Lakes_4ha WHERE lagoslakeid=",
-                   lagoslakeid), crs = crs)
+    query = paste0("SELECT * FROM LAGOS_NE_All_Lakes_4ha WHERE lagoslakeid IN ('",
+                   paste0(lagoslakeid,
+                          collapse = "', '"), "');"), crs = crs)
 
-  res <- sf::st_union(st_geometry(iws), st_geometry(lake_boundary))
+  res <- lapply(seq_len(nrow(iws)), function(x) {
+    st_geometry(st_union(st_geometry(iws)[x],
+                         st_geometry(lake_boundary)[x]))})
 
-  nhdR::toUTM(res)
+  res <- do.call(c, res)
+  st_geometry(iws) <- res
+
+  nhdR::toUTM(iws)
 }

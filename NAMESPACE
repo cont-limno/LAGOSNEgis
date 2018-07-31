@@ -3,6 +3,7 @@
 export(query_gis)
 export(query_wbd)
 importFrom(dplyr,mutate)
+importFrom(sf,"st_geometry<-")
 importFrom(sf,st_as_sfc)
 importFrom(sf,st_crs)
 importFrom(sf,st_geometry)
