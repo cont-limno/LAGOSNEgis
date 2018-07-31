@@ -20,7 +20,7 @@ query_gis <- function(gis_path = NA, query, crs){
                        stringsAsFactors = FALSE)
   dat <- dplyr::mutate(dat,
                          wkt = vapour_read_geometry_text(gis_path,
-                                                       sql = query, format = "wkt"))
+                                                       sql = query, textformat = "wkt"))
   sf::st_geometry(dat) <- sf::st_as_sfc(dat$wkt)
   sf::st_crs(dat) <- sf::st_crs(crs)
 
@@ -30,6 +30,7 @@ query_gis <- function(gis_path = NA, query, crs){
 #' Query watershed boundary for LAGOS lakes
 #'
 #' @param lagoslakeid numeric
+#' @param gis_path file.path to LAGOSNE GIS gpkg
 #' @param crs projection string or epsg code
 #'
 #' @importFrom sf st_union

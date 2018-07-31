@@ -9,6 +9,8 @@ query_wbd(lagoslakeid, gis_path = NA, crs = NA)
 \arguments{
 \item{lagoslakeid}{numeric}
 
+\item{gis_path}{file.path to LAGOSNE GIS gpkg}
+
 \item{crs}{projection string or epsg code}
 }
 \description{
