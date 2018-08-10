@@ -4,7 +4,8 @@
 \alias{query_wbd}
 \title{Query watershed boundary for LAGOS lakes}
 \usage{
-query_wbd(lagoslakeid, gis_path = NA, crs = NA)
+query_wbd(lagoslakeid, gis_path = gis_path(), crs = albers_conic(),
+  utm = TRUE)
 }
 \arguments{
 \item{lagoslakeid}{numeric}
@@ -12,6 +13,8 @@ query_wbd(lagoslakeid, gis_path = NA, crs = NA)
 \item{gis_path}{file.path to LAGOSNE GIS gpkg}
 
 \item{crs}{projection string or epsg code}
+
+\item{utm}{logical convert crs to utm}
 }
 \description{
 Query watershed boundary for LAGOS lakes

@@ -4,7 +4,7 @@
 \alias{query_gis}
 \title{Query LAGOS GIS}
 \usage{
-query_gis(gis_path = NA, query, crs)
+query_gis(gis_path = gis_path(), query, crs)
 }
 \arguments{
 \item{gis_path}{file path}

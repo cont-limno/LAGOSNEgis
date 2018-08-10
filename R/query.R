@@ -10,11 +10,7 @@
 #'
 #' @export
 #'
-query_gis <- function(gis_path = NA, query, crs){
-
-  if(is.na(gis_path)){
-    gis_path <- path.expand(options("gis_path")$gis_path)
-  }
+query_gis <- function(gis_path = gis_path(), query, crs){
 
   dat <- as.data.frame(vapour_read_attributes(gis_path, sql = query),
                        stringsAsFactors = FALSE)
@@ -32,6 +28,7 @@ query_gis <- function(gis_path = NA, query, crs){
 #' @param lagoslakeid numeric
 #' @param gis_path file.path to LAGOSNE GIS gpkg
 #' @param crs projection string or epsg code
+#' @param utm logical convert crs to utm
 #'
 #' @importFrom sf st_union st_geometry<-
 #' @export
@@ -40,10 +37,8 @@ query_gis <- function(gis_path = NA, query, crs){
 #' res <- query_wbd(lagoslakeid = c(5371, 4559))
 #' plot(res)
 #' }
-query_wbd <- function(lagoslakeid, gis_path = NA, crs = NA){
-  if(is.na(crs)){
-    crs <- "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"
-  }
+query_wbd <- function(lagoslakeid, gis_path = gis_path(), crs = albers_conic(),
+                      utm = TRUE){
 
   iws <- query_gis(gis_path,
     query = paste0("SELECT * FROM IWS WHERE lagoslakeid IN ('",
@@ -61,5 +56,9 @@ query_wbd <- function(lagoslakeid, gis_path = NA, crs = NA){
   res <- do.call(c, res)
   st_geometry(iws) <- res
 
-  nhdR::toUTM(iws)
+  if(utm){
+    nhdR::toUTM(iws)
+  }else{
+    iws
+  }
 }
