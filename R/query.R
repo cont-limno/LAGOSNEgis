@@ -10,7 +10,7 @@
 #'
 #' @export
 #'
-query_gis <- function(gis_path = gis_path(), query, crs){
+query_gis <- function(gis_path, query, crs){
 
   dat <- as.data.frame(vapour_read_attributes(gis_path, sql = query),
                        stringsAsFactors = FALSE)
@@ -37,7 +37,7 @@ query_gis <- function(gis_path = gis_path(), query, crs){
 #' res <- query_wbd(lagoslakeid = c(5371, 4559))
 #' plot(res)
 #' }
-query_wbd <- function(lagoslakeid, gis_path = gis_path(), crs = albers_conic(),
+query_wbd <- function(lagoslakeid, gis_path = gis_path_default(), crs = albers_conic(),
                       utm = TRUE){
 
   iws <- query_gis(gis_path,

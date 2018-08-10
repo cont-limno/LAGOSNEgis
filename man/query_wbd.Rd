@@ -4,7 +4,7 @@
 \alias{query_wbd}
 \title{Query watershed boundary for LAGOS lakes}
 \usage{
-query_wbd(lagoslakeid, gis_path = gis_path(), crs = albers_conic(),
+query_wbd(lagoslakeid, gis_path = gis_path_default(), crs = albers_conic(),
   utm = TRUE)
 }
 \arguments{
