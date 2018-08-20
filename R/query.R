@@ -65,11 +65,11 @@ query_gis_ <- function(gis_path, query, crs){
 #' @param crs projection string or epsg code
 #' @param utm logical convert crs to utm
 #'
-#' @importFrom sf st_union st_geometry<-
+#' @importFrom sf st_union st_geometry<- st_crs<- st_buffer
 #' @export
 #' @examples \dontrun{
 #' library(mapview)
-#' res <- query_wbd(lagoslakeid = c(5371))
+#' res <- query_wbd(lagoslakeid = c(7010))
 #' mapview(res)
 #'
 #' res <- query_wbd(lagoslakeid = c(2057, 3866, 1500, 3386, 2226, 1637, 6874, 7032, 1935, 6970, 5331))
@@ -88,11 +88,15 @@ query_wbd <- function(lagoslakeid, gis_path = gis_path_default(),
                    paste0(lagoslakeid,
                           collapse = "', '"), "');"), crs = crs)
 
-  res <- lapply(seq_len(nrow(iws)), function(x) {
-    st_geometry(st_union(st_geometry(iws)[x],
-                         st_geometry(lake_boundary)[x]))})
+    res <- lapply(seq_len(nrow(iws)), function(x) {
+    iws_dissolve  <- st_buffer(do.call(c, st_geometry(iws)[x]), 0)
+    lake_dissolve <- st_buffer(do.call(c, st_geometry(lake_boundary)[x]), 0.001)
+
+    st_geometry(st_union(iws_dissolve, lake_dissolve))
+    })
 
   res <- do.call(c, res)
+  st_crs(res) <- crs
   st_geometry(iws) <- res
 
   if(utm){
