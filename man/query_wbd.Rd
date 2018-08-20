@@ -21,8 +21,11 @@ Query watershed boundary for LAGOS lakes
 }
 \examples{
 \dontrun{
-library(sf)
-res <- query_wbd(lagoslakeid = c(5371, 4559))
-plot(res)
+library(mapview)
+res <- query_wbd(lagoslakeid = c(5371))
+mapview(res)
+
+res <- query_wbd(lagoslakeid = c(2057, 3866, 1500, 3386, 2226, 1637, 6874, 7032, 1935, 6970, 5331))
+
 }
 }

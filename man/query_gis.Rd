@@ -4,14 +4,19 @@
 \alias{query_gis}
 \title{Query LAGOS GIS}
 \usage{
-query_gis(gis_path, query, crs)
+query_gis(layer, id_name, ids, crs = albers_conic(),
+  gis_path = gis_path_default())
 }
 \arguments{
-\item{gis_path}{file path}
+\item{layer}{character layer name}
 
-\item{query}{SQL string}
+\item{id_name}{selection column}
 
-\item{crs}{coordinate reference system string or epsg code}
+\item{ids}{feature ids to select}
+
+\item{crs}{character projection info defaults to gis_path_default()}
+
+\item{gis_path}{character path to LAGOSNE GIS gpkg}
 }
 \description{
 Query LAGOS GIS

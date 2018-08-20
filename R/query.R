@@ -1,5 +1,34 @@
 #' Query LAGOS GIS
 #'
+#' @param layer character layer name
+#' @param id_name selection column
+#' @param ids feature ids to select
+#' @param crs character projection info defaults to gis_path_default()
+#' @param gis_path character path to LAGOSNE GIS gpkg
+#'
+#' @export
+#'
+#' @examples \dontrun{
+#'
+#' # library(sf)
+#' # library(gdalUtils)
+#' # st_layers(gis_path_default())
+#' # ogrinfo(gis_path_default(), "HU12", so = TRUE)
+#'
+#' res <- query_gis("IWS", "lagoslakeid", c(701"0))
+#' res <- query_gis("HU12", "ZoneID", c("HU12_1"))
+#' }
+query_gis <- function(layer, id_name, ids, crs = albers_conic(),
+                      gis_path = gis_path_default()){
+  query_gis_(gis_path,
+             query = paste0("SELECT * FROM ", layer,
+                            " WHERE ", id_name, " IN ('",
+                            paste0(ids,
+                                   collapse = "', '"), "');"), crs = crs)
+}
+
+#' Raw (non-vectorized) query of LAGOS GIS
+#'
 #' @param gis_path file path
 #' @param query SQL string
 #' @param crs coordinate reference system string or epsg code
@@ -10,7 +39,13 @@
 #'
 #' @export
 #'
-query_gis <- function(gis_path, query, crs){
+#' @examples \dontrun{
+#' res <- query_gis_(gis_path = "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg",
+#' query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');",
+#' crs = albers_conic())
+#' }
+#'
+query_gis_ <- function(gis_path, query, crs){
 
   dat <- as.data.frame(vapour_read_attributes(gis_path, sql = query),
                        stringsAsFactors = FALSE)
@@ -33,18 +68,22 @@ query_gis <- function(gis_path, query, crs){
 #' @importFrom sf st_union st_geometry<-
 #' @export
 #' @examples \dontrun{
-#' library(sf)
-#' res <- query_wbd(lagoslakeid = c(5371, 4559))
-#' plot(res)
+#' library(mapview)
+#' res <- query_wbd(lagoslakeid = c(5371))
+#' mapview(res)
+#'
+#' res <- query_wbd(lagoslakeid = c(2057, 3866, 1500, 3386, 2226, 1637, 6874, 7032, 1935, 6970, 5331))
+#'
 #' }
-query_wbd <- function(lagoslakeid, gis_path = gis_path_default(), crs = albers_conic(),
-                      utm = TRUE){
+query_wbd <- function(lagoslakeid, gis_path = gis_path_default(),
+                      crs = albers_conic(), utm = TRUE){
 
-  iws <- query_gis(gis_path,
+  iws <- query_gis_(gis_path,
     query = paste0("SELECT * FROM IWS WHERE lagoslakeid IN ('",
                    paste0(lagoslakeid,
                           collapse = "', '"), "');"), crs = crs)
-  lake_boundary <- query_gis(gis_path,
+
+  lake_boundary <- query_gis_(gis_path,
     query = paste0("SELECT * FROM LAGOS_NE_All_Lakes_4ha WHERE lagoslakeid IN ('",
                    paste0(lagoslakeid,
                           collapse = "', '"), "');"), crs = crs)
