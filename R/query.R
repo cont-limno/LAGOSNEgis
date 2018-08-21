@@ -10,12 +10,12 @@
 #'
 #' @examples \dontrun{
 #'
-#' # library(sf)
-#' # library(gdalUtils)
-#' # st_layers(gis_path_default())
-#' # ogrinfo(gis_path_default(), "HU12", so = TRUE)
+#' library(sf)
+#' library(gdalUtils)
+#' st_layers(gis_path_default())
+#' ogrinfo(gis_path_default(), "HU12", so = TRUE)
 #'
-#' res <- query_gis("IWS", "lagoslakeid", c(701"0))
+#' res <- query_gis("IWS", "lagoslakeid", c(7010))
 #' res <- query_gis("HU12", "ZoneID", c("HU12_1"))
 #' }
 query_gis <- function(layer, id_name, ids, crs = albers_conic(),

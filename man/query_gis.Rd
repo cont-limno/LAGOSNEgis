@@ -21,3 +21,15 @@ query_gis(layer, id_name, ids, crs = albers_conic(),
 \description{
 Query LAGOS GIS
 }
+\examples{
+\dontrun{
+
+library(sf)
+library(gdalUtils)
+st_layers(gis_path_default())
+ogrinfo(gis_path_default(), "HU12", so = TRUE)
+
+res <- query_gis("IWS", "lagoslakeid", c(7010))
+res <- query_gis("HU12", "ZoneID", c("HU12_1"))
+}
+}
