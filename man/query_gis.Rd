@@ -25,9 +25,15 @@ Query LAGOS GIS
 \dontrun{
 
 library(sf)
-library(gdalUtils)
 st_layers(gis_path_default())
+
+library(gdalUtils)
 ogrinfo(gis_path_default(), "HU12", so = TRUE)
+
+library(mapview)
+res_iws <- query_gis("IWS", "lagoslakeid", c(34352))
+res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
+mapview(res_iws) + mapview(res_lake)
 
 res <- query_gis("IWS", "lagoslakeid", c(7010))
 res <- query_gis("HU12", "ZoneID", c("HU12_1"))
