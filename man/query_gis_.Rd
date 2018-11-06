@@ -17,7 +17,7 @@ query_gis_(gis_path, query, crs)
 Raw (non-vectorized) query of LAGOS GIS
 }
 \examples{
-\dontrun{
+\dontrun{#'
 res <- query_gis_(gis_path = "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg",
 query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');",
 crs = albers_conic())

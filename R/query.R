@@ -19,7 +19,8 @@
 #' library(mapview)
 #' res_iws <- query_gis("IWS", "lagoslakeid", c(34352))
 #' res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
-#' mapview(res_iws) + mapview(res_lake)
+#' res_pnt <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
+#' mapview(res_iws) + mapview(res_lake) + mapview(res_pnt)
 #'
 #' res <- query_gis("IWS", "lagoslakeid", c(7010))
 #' res <- query_gis("HU12", "ZoneID", c("HU12_1"))
@@ -49,13 +50,22 @@ query_gis <- function(layer, id_name, ids, crs = albers_conic(),
 #'
 #' @export
 #'
-#' @examples \dontrun{
+#' @examples \dontrun{#'
 #' res <- query_gis_(gis_path = "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg",
 #' query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');",
 #' crs = albers_conic())
 #' }
 #'
 query_gis_ <- function(gis_path, query, crs){
+
+  # investigate specific layers
+  # library(sf)
+  # library(vapour)
+  # gis_path <- "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg"
+  # st_layers(gis_path)
+  # query <- "SELECT * FROM Stream_Polylines LIMIT 1"
+  # test <- as.data.frame(vapour_read_attributes(gis_path, sql = query),
+  #                      stringsAsFactors = FALSE)
 
   dat <- as.data.frame(vapour_read_attributes(gis_path, sql = query),
                        stringsAsFactors = FALSE)
