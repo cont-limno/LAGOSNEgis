@@ -6,6 +6,7 @@
 #' @param crs character projection info defaults to gis_path_default()
 #' @param gis_path character path to LAGOSNE GIS gpkg
 #'
+#' @importFrom sf st_geometry st_geometry_type st_cast
 #' @export
 #'
 #' @examples \dontrun{
@@ -35,6 +36,11 @@ query_gis <- function(layer, id_name, ids, crs = albers_conic(),
 
   # sort items by ids
   res <- res[match(ids, data.frame(res[,id_name])[,id_name]),]
+
+  if(any(unique(sf::st_geometry_type(sf::st_geometry(res))) == "MULTISURFACE")){
+    res <- sf::st_cast(res, "MULTIPOLYGON")
+  }
+
   res
 }
 
