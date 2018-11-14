@@ -1,10 +1,10 @@
 Package: LAGOSextra
-Title: Extra Functions to Supplement LAGOS
+Title: Extra Functions to Supplement LAGOSNE
 Version: 0.1
 Authors@R: person("Joseph", "Stachelek", role = c("aut", "cre"), 
  email = "stachel2@msu.edu")
-Description: Extra Functions to Supplement LAGOS.
-Imports: vapour, LAGOSNE, sf, dplyr, nhdR
+Description: Extra Functions to Supplement LAGOSNE.
+Imports: vapour (>= 0.2.0), LAGOSNE, sf, dplyr, nhdR
 Depends: R (>= 3.4)
 License: GPL
 Encoding: UTF-8
