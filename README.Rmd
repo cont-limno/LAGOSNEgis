@@ -20,14 +20,43 @@ Extra functions to interact with the GIS module of LAGOSNE.
 
 ## Installation
 
-```{r }
+```{r eval=FALSE}
 remotes::install_github("jsta/LAGOSNEgis")
 ```
 
 ## Setup
 
-```{r }
+_Optional: Place data at the location returned from `LAGOSNEgis:::gis_path_default()`_
 
+## Usage
+
+```{r }
+library(LAGOSNEgis)
+```
+
+### List available GIS layers
+
+```{r eval=FALSE}
+sf::st_layers(LAGOSNEgis:::gis_path_default()
+```
+
+```{r echo=FALSE}
+ly <- sf::st_layers(LAGOSNEgis:::gis_path_default())
+knitr::kable(data.frame(ly[c("name", "driver", "features", "fields")]))
+```
+
+### Query from a specfic layer
+
+```{r eval=FALSE}
+res_iws  <- query_gis("IWS", "lagoslakeid", c(34352))
+res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
+res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
+```
+
+### Query a combined watershed and lake polygon
+
+```{r eval=FALSE}
+res <- query_wbd(lagoslakeid = c(7010))
 ```
 
 ## References
