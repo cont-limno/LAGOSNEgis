@@ -4,5 +4,5 @@ albers_conic <- function(){
 }
 
 gis_path_default <- function(){
-  path.expand("~/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg")
+  file.path(rappdirs::user_data_dir("LAGOS-GIS"), "lagos-ne_gis.gpkg")
 }
