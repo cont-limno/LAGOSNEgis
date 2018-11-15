@@ -11,6 +11,14 @@ status](https://travis-ci.org/jsta/LAGOSNEgis.svg?branch=master)](https://travis
 
 Extra functions to interact with the GIS module of LAGOSNE.
 
+## Features
+
+  - Queries are optimized for speed using `SQL` statements rather than
+    loading entire layers
+
+  - Repeated calls to a function with the same arguments are fast
+    because function outputs are cached (*memoised*)
+
 ## Installation
 
 ``` r

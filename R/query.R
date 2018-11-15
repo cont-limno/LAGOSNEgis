@@ -64,7 +64,7 @@ query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic()
 #' crs = LAGOSextra:::albers_conic())
 #' }
 #'
-query_gis_ <- function(gis_path, query, crs){
+query_gis_ <- function(gis_path = gis_path_default(), query, crs = albers_conic()){
 
   # error if extent is not NA and query is defined?
 

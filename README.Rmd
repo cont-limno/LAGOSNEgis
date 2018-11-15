@@ -18,6 +18,12 @@ knitr::opts_chunk$set(
 
 Extra functions to interact with the GIS module of LAGOSNE.
 
+## Features
+
+* Queries are optimized for speed using `SQL` statements rather than loading entire layers
+
+* Repeated calls to a function with the same arguments are fast because function outputs are cached (_memoised_)
+
 ## Installation
 
 ```{r eval=FALSE}
@@ -57,6 +63,14 @@ res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
 
 ```{r eval=FALSE}
 res <- query_wbd(lagoslakeid = c(7010))
+```
+
+### Flexible queries using `SQL` statements
+
+```{r eval=FALSE}
+res <- query_gis_(gis_path = "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg", 
+                  query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');", 
+                  crs = LAGOSextra:::albers_conic())
 ```
 
 ## References
