@@ -68,9 +68,7 @@ res <- query_wbd(lagoslakeid = c(7010))
 ### Flexible queries using `SQL` statements
 
 ```{r eval=FALSE}
-res <- query_gis_(gis_path = "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg", 
-                  query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');", 
-                  crs = LAGOSextra:::albers_conic())
+res <- query_gis_(query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');")
 ```
 
 ## References

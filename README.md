@@ -82,6 +82,12 @@ res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
 res <- query_wbd(lagoslakeid = c(7010))
 ```
 
+### Flexible queries using `SQL` statements
+
+``` r
+res <- query_gis_(query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');")
+```
+
 ## References
 
 Soranno P., K. Cheruvelil. 2017. LAGOS-NE-GIS v1.0: A module for
