@@ -78,6 +78,14 @@
 <a href="#lagosnegis" class="anchor"></a>LAGOSNEgis</h1></div>
 
 <p>Extra functions to interact with the GIS module of LAGOSNE.</p>
+<div id="features" class="section level2">
+<h2 class="hasAnchor">
+<a href="#features" class="anchor"></a>Features</h2>
+<ul>
+<li><p>Queries are optimized for speed using <code>SQL</code> statements rather than loading entire layers</p></li>
+<li><p>Repeated calls to a function with the same arguments are fast because function outputs are cached (<em>memoised</em>)</p></li>
+</ul>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -256,6 +264,11 @@
 <h3 class="hasAnchor">
 <a href="#query-a-combined-watershed-and-lake-polygon" class="anchor"></a>Query a combined watershed and lake polygon</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_wbd.html">query_wbd</a></span>(<span class="dt">lagoslakeid =</span> <span class="kw">c</span>(<span class="dv">7010</span>))</a></code></pre></div>
+</div>
+<div id="flexible-queries-using-sql-statements" class="section level3">
+<h3 class="hasAnchor">
+<a href="#flexible-queries-using-sql-statements" class="anchor"></a>Flexible queries using <code>SQL</code> statements</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis_.html">query_gis_</a></span>(<span class="dt">query =</span> <span class="st">"SELECT * FROM IWS WHERE lagoslakeid IN ('7010');"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level2">
