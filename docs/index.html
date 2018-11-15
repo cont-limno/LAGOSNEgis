@@ -44,6 +44,18 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/using-lagosnegis.html">Using LAGOSNEgis</a>
+    </li>
+  </ul>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -64,7 +76,188 @@
 <div id="lagosnegis" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#lagosnegis" class="anchor"></a>LAGOSNEgis</h1></div>
+
 <p>Extra functions to interact with the GIS module of LAGOSNE.</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"jsta/LAGOSNEgis"</span>)</a></code></pre></div>
+</div>
+<div id="setup" class="section level2">
+<h2 class="hasAnchor">
+<a href="#setup" class="anchor"></a>Setup</h2>
+<p><em>Optional: Place data at the location returned from <code>LAGOSNEgis:::gis_path_default()</code></em></p>
+</div>
+<div id="usage" class="section level2">
+<h2 class="hasAnchor">
+<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(LAGOSNEgis)</a></code></pre></div>
+<div id="list-available-gis-layers" class="section level3">
+<h3 class="hasAnchor">
+<a href="#list-available-gis-layers" class="anchor"></a>List available GIS layers</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">sf<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/st_layers">st_layers</a></span>(LAGOSNEgis<span class="op">:::</span><span class="kw">gis_path_default</span>()</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">driver</th>
+<th align="right">features</th>
+<th align="right">fields</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">HU8</td>
+<td align="left">GPKG</td>
+<td align="right">511</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left">HU4</td>
+<td align="left">GPKG</td>
+<td align="right">65</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">HU12</td>
+<td align="left">GPKG</td>
+<td align="right">20257</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">EDU</td>
+<td align="left">GPKG</td>
+<td align="right">91</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">LAGOS_NE_Study_Extent</td>
+<td align="left">GPKG</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">COUNTY</td>
+<td align="left">GPKG</td>
+<td align="right">955</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">Stream_Polylines</td>
+<td align="left">GPKG</td>
+<td align="right">4014384</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">LAGOS_NE_All_Lakes_1ha</td>
+<td align="left">GPKG</td>
+<td align="right">141265</td>
+<td align="right">34</td>
+</tr>
+<tr class="odd">
+<td align="left">LAGOS_NE_All_Lakes_4ha</td>
+<td align="left">GPKG</td>
+<td align="right">51101</td>
+<td align="right">34</td>
+</tr>
+<tr class="even">
+<td align="left">LAGOS_NE_All_Lakes_1ha_POINTS</td>
+<td align="left">GPKG</td>
+<td align="right">141265</td>
+<td align="right">32</td>
+</tr>
+<tr class="odd">
+<td align="left">LAGOS_NE_All_Lakes_4ha_POINTS</td>
+<td align="left">GPKG</td>
+<td align="right">51101</td>
+<td align="right">32</td>
+</tr>
+<tr class="even">
+<td align="left">LAGOS_NE_All_Lakes_4ha_Buffered_100m</td>
+<td align="left">GPKG</td>
+<td align="right">51101</td>
+<td align="right">16</td>
+</tr>
+<tr class="odd">
+<td align="left">LAGOS_NE_All_Lakes_4ha_Buffered_500m</td>
+<td align="left">GPKG</td>
+<td align="right">51101</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="left">Glaciation</td>
+<td align="left">GPKG</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">Wetlands</td>
+<td align="left">GPKG</td>
+<td align="right">4403964</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">Stream_Polygons</td>
+<td align="left">GPKG</td>
+<td align="right">31239</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">IWS</td>
+<td align="left">GPKG</td>
+<td align="right">51071</td>
+<td align="right">14</td>
+</tr>
+<tr class="even">
+<td align="left">Border_HU12</td>
+<td align="left">GPKG</td>
+<td align="right">169</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">Border_IWS</td>
+<td align="left">GPKG</td>
+<td align="right">170</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">STATE</td>
+<td align="left">GPKG</td>
+<td align="right">17</td>
+<td align="right">11</td>
+</tr>
+<tr class="odd">
+<td align="left">US_Canada_Border</td>
+<td align="left">GPKG</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">HU2</td>
+<td align="left">GPKG</td>
+<td align="right">22</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">LAGOS_NE_NHDReachCrossReference</td>
+<td align="left">GPKG</td>
+<td align="right">404414</td>
+<td align="right">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="query-from-a-specfic-layer" class="section level3">
+<h3 class="hasAnchor">
+<a href="#query-from-a-specfic-layer" class="anchor"></a>Query from a specfic layer</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">res_iws  &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis.html">query_gis</a></span>(<span class="st">"IWS"</span>, <span class="st">"lagoslakeid"</span>, <span class="kw">c</span>(<span class="dv">34352</span>))</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">res_lake &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis.html">query_gis</a></span>(<span class="st">"LAGOS_NE_All_Lakes_4ha"</span>, <span class="st">"lagoslakeid"</span>, <span class="dv">34352</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">res_pnt  &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis.html">query_gis</a></span>(<span class="st">"LAGOS_NE_All_Lakes_4ha_POINTS"</span>, <span class="st">"lagoslakeid"</span>, <span class="dv">34352</span>)</a></code></pre></div>
+</div>
+<div id="query-a-combined-watershed-and-lake-polygon" class="section level3">
+<h3 class="hasAnchor">
+<a href="#query-a-combined-watershed-and-lake-polygon" class="anchor"></a>Query a combined watershed and lake polygon</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_wbd.html">query_wbd</a></span>(<span class="dt">lagoslakeid =</span> <span class="kw">c</span>(<span class="dv">7010</span>))</a></code></pre></div>
+</div>
+</div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
@@ -94,7 +287,15 @@
 </ul>
 </div>
 
-      </div>
+      <div class="dev-status">
+<h2>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://cran.r-project.org/package=LAGOSNEgis"><img src="https://www.r-pkg.org/badges/version/LAGOSNEgis" alt="CRAN status"></a></li>
+<li><a href="https://travis-ci.org/jsta/LAGOSNEgis"><img src="https://travis-ci.org/jsta/LAGOSNEgis.svg?branch=master" alt="Travis build status"></a></li>
+</ul>
+</div>
+</div>
 
 </div>
 

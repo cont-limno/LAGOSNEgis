@@ -1,0 +1,33 @@
+---
+title: "Using LAGOSNEgis"
+author: "Joseph Stachelek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using LAGOSNEgis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(leaflet)
+library(mapview)
+library(magrittr)
+library(LAGOSNEgis)
+library(sf)
+
+res_iws  <- query_gis("IWS", "lagoslakeid", c(34352))
+res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
+res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
+
+mapview(res_iws) + mapview(res_lake) + mapview(res_pnt)
+```
+
+
