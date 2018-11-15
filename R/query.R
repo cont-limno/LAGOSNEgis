@@ -7,6 +7,7 @@
 #' @param gis_path character path to LAGOSNE GIS gpkg
 #'
 #' @importFrom sf st_geometry st_geometry_type st_cast
+#' @importFrom memoise memoise
 #' @export
 #'
 #' @examples \dontrun{
@@ -26,7 +27,7 @@
 #' res <- query_gis("IWS", "lagoslakeid", c(7010))
 #' res <- query_gis("HU12", "ZoneID", c("HU12_1"))
 #' }
-query_gis <- function(layer, id_name, ids, crs = albers_conic(),
+query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic(),
                       gis_path = gis_path_default()){
   res <- query_gis_(gis_path,
              query = paste0("SELECT * FROM ", layer,
@@ -42,7 +43,7 @@ query_gis <- function(layer, id_name, ids, crs = albers_conic(),
   }
 
   res
-}
+})
 
 #' Raw (non-vectorized) query of LAGOS GIS
 #'
@@ -64,15 +65,24 @@ query_gis <- function(layer, id_name, ids, crs = albers_conic(),
 #'
 query_gis_ <- function(gis_path, query, crs){
 
+  # error if extent is not NA and query is defined?
+
   # investigate specific layers
   # library(sf)
   # library(vapour)
+  # crs <- LAGOSextra:::albers_conic()
   # gis_path <- "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg"
   # st_layers(gis_path)
-  # query <- "SELECT * FROM Stream_Polylines LIMIT 1"
-  # test <- as.data.frame(vapour_read_attributes(gis_path, sql = query),
+  # query <- "SELECT * FROM IWS LIMIT 1"
+  # as.data.frame(vapour_read_attributes(gis_path, sql = query),
   #                      stringsAsFactors = FALSE)
 
+  # investigate extent argument
+  # e <- as.numeric(st_bbox(dat))[c(1, 3, 2, 4)]
+  # wkt <- vapour_read_geometry_text(gis_path, extent = e, sql = "SELECT * FROM IWS")
+  # need to be able to set extent on vapour_read_attributes
+
+  ###
   dat <- as.data.frame(vapour_read_attributes(gis_path, sql = query),
                        stringsAsFactors = FALSE)
   dat <- dplyr::mutate(dat,
@@ -92,6 +102,7 @@ query_gis_ <- function(gis_path, query, crs){
 #' @param utm logical convert crs to utm
 #'
 #' @importFrom sf st_union st_geometry<- st_crs<- st_buffer
+#' @importFrom memoise memoise
 #' @export
 #' @examples \dontrun{
 #' library(mapview)
@@ -100,12 +111,13 @@ query_gis_ <- function(gis_path, query, crs){
 #' res <- query_wbd(lagoslakeid = c(34352))
 #' mapview(res)
 #'
-#' res <- query_wbd(lagoslakeid = c(2057, 3866, 1500, 3386, 2226, 1637, 6874, 7032, 1935, 6970, 5331, 34352))
+#' res <- query_wbd(lagoslakeid = c(2057, 3866, 1500, 3386, 2226,
+#' 1637, 6874, 7032, 1935, 6970, 5331, 34352))
 #' res <- res[res$lagoslakeid == 34352,]
 #' mapview::mapview(res)
 #'
 #' }
-query_wbd <- function(lagoslakeid, gis_path = gis_path_default(),
+query_wbd <- memoise::memoise(function(lagoslakeid, gis_path = gis_path_default(),
                       crs = albers_conic(), utm = FALSE){
 
   iws           <- query_gis("IWS", "lagoslakeid", lagoslakeid)
@@ -127,4 +139,4 @@ query_wbd <- function(lagoslakeid, gis_path = gis_path_default(),
   }else{
     iws
   }
-}
+})

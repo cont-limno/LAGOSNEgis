@@ -27,7 +27,8 @@ res <- query_wbd(lagoslakeid = c(7010, 34352))
 res <- query_wbd(lagoslakeid = c(34352))
 mapview(res)
 
-res <- query_wbd(lagoslakeid = c(2057, 3866, 1500, 3386, 2226, 1637, 6874, 7032, 1935, 6970, 5331, 34352))
+res <- query_wbd(lagoslakeid = c(2057, 3866, 1500, 3386, 2226,
+1637, 6874, 7032, 1935, 6970, 5331, 34352))
 res <- res[res$lagoslakeid == 34352,]
 mapview::mapview(res)
 
