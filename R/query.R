@@ -54,6 +54,7 @@ query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic()
 #' @importFrom vapour vapour_read_geometry_text vapour_read_attributes
 #' @importFrom dplyr mutate select
 #' @importFrom sf st_as_sfc st_crs st_geometry st_zm
+#' @importFrom rlang .data
 #'
 #' @export
 #'
@@ -89,7 +90,7 @@ query_gis_ <- function(gis_path, query, crs){
                          wkt = vapour_read_geometry_text(gis_path,
                                                        sql = query, textformat = "wkt"))
   sf::st_geometry(dat) <- sf::st_as_sfc(dat$wkt)
-  dat                  <- dplyr::select(dat, -wkt)
+  dat                  <- dplyr::select(dat, -.data$wkt)
   sf::st_crs(dat)      <- sf::st_crs(crs)
 
   sf::st_zm(dat)
