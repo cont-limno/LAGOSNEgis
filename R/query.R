@@ -52,7 +52,7 @@ query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic()
 #' @param crs coordinate reference system string or epsg code
 #'
 #' @importFrom vapour vapour_read_geometry_text vapour_read_attributes
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate select
 #' @importFrom sf st_as_sfc st_crs st_geometry st_zm
 #'
 #' @export
@@ -60,7 +60,7 @@ query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic()
 #' @examples \dontrun{#'
 #' res <- query_gis_(gis_path = "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg",
 #' query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');",
-#' crs = albers_conic())
+#' crs = LAGOSextra:::albers_conic())
 #' }
 #'
 query_gis_ <- function(gis_path, query, crs){
@@ -89,7 +89,8 @@ query_gis_ <- function(gis_path, query, crs){
                          wkt = vapour_read_geometry_text(gis_path,
                                                        sql = query, textformat = "wkt"))
   sf::st_geometry(dat) <- sf::st_as_sfc(dat$wkt)
-  sf::st_crs(dat) <- sf::st_crs(crs)
+  dat                  <- dplyr::select(dat, -wkt)
+  sf::st_crs(dat)      <- sf::st_crs(crs)
 
   sf::st_zm(dat)
 }
