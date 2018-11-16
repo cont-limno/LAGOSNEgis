@@ -26,7 +26,7 @@ get_file_names <- function(url){
 
 get_if_not_exists <- function(url, destfile, overwrite){
   if(!file.exists(destfile) | overwrite){
-    download.file(url, destfile)
+    download.file(url, destfile, mode = "wb")
   }else{
     message(paste0("A local copy of ", url, " already exists on disk"))
   }

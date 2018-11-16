@@ -44,7 +44,7 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
   invisible(lapply(seq_len(length(files)),
                    function(i) get_if_not_exists(files[i], file_paths[i], overwrite)))
 
-  dir.create(lagosnegis_dir(), showWarnings = FALSE)
+  dir.create(dest_folder, showWarnings = FALSE)
   unzip(file_paths, exdir = dest_folder)
 
   message("LAGOSNEgis downloaded. Now converting to gpkg ...")
