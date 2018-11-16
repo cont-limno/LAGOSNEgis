@@ -13,13 +13,11 @@ Extra functions to interact with the GIS module of LAGOSNE.
 
 ## Features
 
-  - **Easy**: Convience functions allow for straightforward subsetting.
+  - **Easy**: Convenience functions allow for straight-forward
+    subsetting.
 
-  -   - **Fast**  
-        Queries are optimized for speed to avoid loading the entirety of
-        massive layers.
-        Repeated calls to a function with the same arguments are fast
-        because function outputs are cached (*memoised*).
+  - **Fast**: Queries are optimized for speed to avoid loading the
+    entirety of massive layers.
 
   - **Flexible** : Custom queries can be constructed using `SQL`
     statements.
@@ -33,8 +31,6 @@ remotes::install_github("jsta/LAGOSNEgis")
 ## Usage
 
 ``` r
-library(sf)
-#> Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3
 library(LAGOSNEgis)
 #> Loading required package: LAGOSNE
 ```
@@ -48,6 +44,7 @@ lagosnegis_get()
 ### List available GIS layers
 
 ``` r
+library(sf)
 sf::st_layers(LAGOSNEgis:::lagosnegis_path())
 ```
 
