@@ -32,9 +32,10 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
 
   files      <- suppressWarnings(paste0(edi_url, "&entityid=",
                                    readLines(pasta_url)))
-  file_names <- sapply(files, get_file_names)
-  files      <- files[!is.na(file_names)]
-  file_names <- file_names[!is.na(file_names)]
+  # file_names <- sapply(files, get_file_names)
+  # file_ind <- as.numeric(which(!is.na(file_names)))
+  files      <- files[20] # files[file_ind]
+  file_names <- "LAGOSNE_GIS_Data_v1.0_gdb.zip" # file_names[file_ind]
 
   local_dir   <- file.path(tempdir())
   dir.create(local_dir, showWarnings = FALSE)
