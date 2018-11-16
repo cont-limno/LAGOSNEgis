@@ -13,11 +13,16 @@ Extra functions to interact with the GIS module of LAGOSNE.
 
 ## Features
 
-  - Queries are optimized for speed using `SQL` statements rather than
-    loading entire layers
+  - **Easy**: Convience functions allow for straightforward subsetting.
 
-  - Repeated calls to a function with the same arguments are fast
-    because function outputs are cached (*memoised*)
+  -   - **Fast**  
+        Queries are optimized for speed to avoid loading the entirety of
+        massive layers.
+        Repeated calls to a function with the same arguments are fast
+        because function outputs are cached (*memoised*).
+
+  - **Flexible** : Custom queries can be constructed using `SQL`
+    statements.
 
 ## Installation
 
@@ -25,21 +30,25 @@ Extra functions to interact with the GIS module of LAGOSNE.
 remotes::install_github("jsta/LAGOSNEgis")
 ```
 
-## Setup
-
-*Optional: Place data at the location returned from
-`LAGOSNEgis:::gis_path_default()`*
-
 ## Usage
 
 ``` r
+library(sf)
+#> Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3
 library(LAGOSNEgis)
+#> Loading required package: LAGOSNE
+```
+
+### Download data
+
+``` r
+lagosnegis_get()
 ```
 
 ### List available GIS layers
 
 ``` r
-sf::st_layers(LAGOSNEgis:::gis_path_default()
+sf::st_layers(LAGOSNEgis:::lagosnegis_path())
 ```
 
 | name                                       | driver | features | fields |
@@ -71,9 +80,12 @@ sf::st_layers(LAGOSNEgis:::gis_path_default()
 ### Query from a specfic layer
 
 ``` r
-res_iws  <- query_gis("IWS", "lagoslakeid", c(34352))
-res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
-res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
+res_iws  <- query_gis(layer = "IWS", 
+                      id_name = "lagoslakeid", ids = c(34352))
+res_lake <- query_gis(layer = "LAGOS_NE_All_Lakes_4ha", 
+                      id_name = "lagoslakeid", ids = 34352)
+res_pnt  <- query_gis(layer = "LAGOS_NE_All_Lakes_4ha_POINTS", 
+                      id_name = "lagoslakeid", ids = 34352)
 ```
 
 ### Query a combined watershed and lake polygon
