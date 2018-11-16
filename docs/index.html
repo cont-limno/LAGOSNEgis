@@ -82,8 +82,9 @@
 <h2 class="hasAnchor">
 <a href="#features" class="anchor"></a>Features</h2>
 <ul>
-<li><p>Queries are optimized for speed using <code>SQL</code> statements rather than loading entire layers</p></li>
-<li><p>Repeated calls to a function with the same arguments are fast because function outputs are cached (<em>memoised</em>)</p></li>
+<li><p><strong>Easy</strong>: Convenience functions allow for straight-forward subsetting.</p></li>
+<li><p><strong>Fast</strong>: Queries are optimized for speed to avoid loading the entirety of massive layers.</p></li>
+<li><p><strong>Flexible</strong> : Custom queries can be constructed using <code>SQL</code> statements.</p></li>
 </ul>
 </div>
 <div id="installation" class="section level2">
@@ -91,19 +92,21 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"jsta/LAGOSNEgis"</span>)</a></code></pre></div>
 </div>
-<div id="setup" class="section level2">
-<h2 class="hasAnchor">
-<a href="#setup" class="anchor"></a>Setup</h2>
-<p><em>Optional: Place data at the location returned from <code>LAGOSNEgis:::gis_path_default()</code></em></p>
-</div>
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(LAGOSNEgis)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(LAGOSNEgis)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; Loading required package: LAGOSNE</span></a></code></pre></div>
+<div id="download-data" class="section level3">
+<h3 class="hasAnchor">
+<a href="#download-data" class="anchor"></a>Download data</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="reference/lagosnegis_get.html">lagosnegis_get</a></span>()</a></code></pre></div>
+</div>
 <div id="list-available-gis-layers" class="section level3">
 <h3 class="hasAnchor">
 <a href="#list-available-gis-layers" class="anchor"></a>List available GIS layers</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">sf<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/st_layers">st_layers</a></span>(LAGOSNEgis<span class="op">:::</span><span class="kw">gis_path_default</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">sf<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/st_layers">st_layers</a></span>(LAGOSNEgis<span class="op">:::</span><span class="kw">lagosnegis_path</span>())</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -256,19 +259,22 @@
 <div id="query-from-a-specfic-layer" class="section level3">
 <h3 class="hasAnchor">
 <a href="#query-from-a-specfic-layer" class="anchor"></a>Query from a specfic layer</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">res_iws  &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis.html">query_gis</a></span>(<span class="st">"IWS"</span>, <span class="st">"lagoslakeid"</span>, <span class="kw">c</span>(<span class="dv">34352</span>))</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">res_lake &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis.html">query_gis</a></span>(<span class="st">"LAGOS_NE_All_Lakes_4ha"</span>, <span class="st">"lagoslakeid"</span>, <span class="dv">34352</span>)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">res_pnt  &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis.html">query_gis</a></span>(<span class="st">"LAGOS_NE_All_Lakes_4ha_POINTS"</span>, <span class="st">"lagoslakeid"</span>, <span class="dv">34352</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">res_iws  &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis.html">query_gis</a></span>(<span class="dt">layer =</span> <span class="st">"IWS"</span>, </a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">                      <span class="dt">id_name =</span> <span class="st">"lagoslakeid"</span>, <span class="dt">ids =</span> <span class="kw">c</span>(<span class="dv">34352</span>))</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">res_lake &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis.html">query_gis</a></span>(<span class="dt">layer =</span> <span class="st">"LAGOS_NE_All_Lakes_4ha"</span>, </a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">                      <span class="dt">id_name =</span> <span class="st">"lagoslakeid"</span>, <span class="dt">ids =</span> <span class="dv">34352</span>)</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">res_pnt  &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis.html">query_gis</a></span>(<span class="dt">layer =</span> <span class="st">"LAGOS_NE_All_Lakes_4ha_POINTS"</span>, </a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">                      <span class="dt">id_name =</span> <span class="st">"lagoslakeid"</span>, <span class="dt">ids =</span> <span class="dv">34352</span>)</a></code></pre></div>
 </div>
 <div id="query-a-combined-watershed-and-lake-polygon" class="section level3">
 <h3 class="hasAnchor">
 <a href="#query-a-combined-watershed-and-lake-polygon" class="anchor"></a>Query a combined watershed and lake polygon</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_wbd.html">query_wbd</a></span>(<span class="dt">lagoslakeid =</span> <span class="kw">c</span>(<span class="dv">7010</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_wbd.html">query_wbd</a></span>(<span class="dt">lagoslakeid =</span> <span class="kw">c</span>(<span class="dv">7010</span>))</a></code></pre></div>
 </div>
 <div id="flexible-queries-using-sql-statements" class="section level3">
 <h3 class="hasAnchor">
 <a href="#flexible-queries-using-sql-statements" class="anchor"></a>Flexible queries using <code>SQL</code> statements</h3>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis_.html">query_gis_</a></span>(<span class="dt">query =</span> <span class="st">"SELECT * FROM IWS WHERE lagoslakeid IN ('7010');"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">res &lt;-<span class="st"> </span><span class="kw"><a href="reference/query_gis_.html">query_gis_</a></span>(<span class="dt">query =</span> <span class="st">"SELECT * FROM IWS WHERE lagoslakeid IN ('7010');"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="references" class="section level2">

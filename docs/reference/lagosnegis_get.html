@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Query LAGOS GIS — query_gis • LAGOSNEgis</title>
+<title>Get LAGOSNEgis data — lagosnegis_get • LAGOSNEgis</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,9 @@
 
 
 
-<meta property="og:title" content="Query LAGOS GIS — query_gis" />
+<meta property="og:title" content="Get LAGOSNEgis data — lagosnegis_get" />
 
-<meta property="og:description" content="Query LAGOS GIS" />
+<meta property="og:description" content="Get data from the GIS module of LAGOSNE" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,69 +101,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Query LAGOS GIS</h1>
+    <h1>Get LAGOSNEgis data</h1>
     
-    <div class="hidden name"><code>query_gis.Rd</code></div>
+    <div class="hidden name"><code>lagosnegis_get.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Query LAGOS GIS</p>
+    <p>Get data from the GIS module of LAGOSNE</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>query_gis</span>(<span class='no'>layer</span>, <span class='no'>id_name</span>, <span class='no'>ids</span>, <span class='kw'>crs</span> <span class='kw'>=</span> <span class='fu'>albers_conic</span>(),
-  <span class='kw'>gis_path</span> <span class='kw'>=</span> <span class='fu'>lagosnegis_path</span>())</pre>
+    <pre class="usage"><span class='fu'>lagosnegis_get</span>(<span class='kw'>dest_folder</span> <span class='kw'>=</span> <span class='fu'>lagosnegis_dir</span>(), <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>layer</th>
-      <td><p>character layer name</p></td>
+      <th>dest_folder</th>
+      <td><p>file.path defaults to lagosnegis_path()</p></td>
     </tr>
     <tr>
-      <th>id_name</th>
-      <td><p>selection column</p></td>
-    </tr>
-    <tr>
-      <th>ids</th>
-      <td><p>feature ids to select</p></td>
-    </tr>
-    <tr>
-      <th>crs</th>
-      <td><p>character projection info defaults to lagosnegis_path()</p></td>
-    </tr>
-    <tr>
-      <th>gis_path</th>
-      <td><p>character path to LAGOSNE GIS gpkg</p></td>
+      <th>overwrite</th>
+      <td><p>logical</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Soranno P., K. Cheruvelil. 2017. LAGOS-NE-GIS v1.0: A module for
+ LAGOS-NE, a multi-scaled geospatial and temporal database of lake
+ ecological context and water quality for thousands of U.S. Lakes:
+ 2013-1925. Environmental Data Initiative.
+ http://dx.doi.org/10.6073/pasta/fb4f5687339bec467ce0ed1ea0b5f0ca.
+ Dataset accessed 9/26/2017.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>library</span>(<span class='no'>sf</span>)
-<span class='fu'><a href='http://www.rdocumentation.org/packages/sf/topics/st_layers'>st_layers</a></span>(<span class='fu'>lagosnegis_path</span>())
-
-<span class='fu'>library</span>(<span class='no'>gdalUtils</span>)
-<span class='fu'><a href='http://www.rdocumentation.org/packages/gdalUtils/topics/ogrinfo'>ogrinfo</a></span>(<span class='fu'>lagosnegis_path</span>(), <span class='st'>"HU12"</span>, <span class='kw'>so</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-
-<span class='fu'>library</span>(<span class='no'>mapview</span>)
-<span class='no'>res_iws</span> <span class='kw'>&lt;-</span> <span class='fu'>query_gis</span>(<span class='st'>"IWS"</span>, <span class='st'>"lagoslakeid"</span>, <span class='fu'>c</span>(<span class='fl'>34352</span>))
-<span class='no'>res_lake</span> <span class='kw'>&lt;-</span> <span class='fu'>query_gis</span>(<span class='st'>"LAGOS_NE_All_Lakes_4ha"</span>, <span class='st'>"lagoslakeid"</span>, <span class='fl'>34352</span>)
-<span class='no'>res_pnt</span> <span class='kw'>&lt;-</span> <span class='fu'>query_gis</span>(<span class='st'>"LAGOS_NE_All_Lakes_4ha_POINTS"</span>, <span class='st'>"lagoslakeid"</span>, <span class='fl'>34352</span>)
-<span class='fu'><a href='http://www.rdocumentation.org/packages/mapview/topics/mapView'>mapview</a></span>(<span class='no'>res_iws</span>) + <span class='fu'><a href='http://www.rdocumentation.org/packages/mapview/topics/mapView'>mapview</a></span>(<span class='no'>res_lake</span>) + <span class='fu'><a href='http://www.rdocumentation.org/packages/mapview/topics/mapView'>mapview</a></span>(<span class='no'>res_pnt</span>)
-
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>query_gis</span>(<span class='st'>"IWS"</span>, <span class='st'>"lagoslakeid"</span>, <span class='fu'>c</span>(<span class='fl'>7010</span>))
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>query_gis</span>(<span class='st'>"HU12"</span>, <span class='st'>"ZoneID"</span>, <span class='fu'>c</span>(<span class='st'>"HU12_1"</span>))
+<span class='fu'>lagosnegis_get</span>()
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#references">References</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
