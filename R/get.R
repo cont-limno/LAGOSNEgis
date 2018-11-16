@@ -46,11 +46,7 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
 
   message("LAGOSNEgis downloaded. Now converting to gpkg ...")
   dir.create(dest_folder, showWarnings = FALSE)
-  inpath <- file.path(dest_folder,
-                      gsub("_gdb", ".gdb",
-       stringr::str_extract(as.character(file_names), "(^.*)(?=\\.zip)")))
-  file.rename(file_paths, inpath)
-  gdalUtils::ogr2ogr(inpath, outpath)
+  gdalUtils::ogr2ogr(file_paths, outpath)
 
   return(invisible(outpath))
 }
