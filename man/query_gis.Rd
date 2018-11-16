@@ -5,7 +5,7 @@
 \title{Query LAGOS GIS}
 \usage{
 query_gis(layer, id_name, ids, crs = albers_conic(),
-  gis_path = gis_path_default())
+  gis_path = lagosnegis_path())
 }
 \arguments{
 \item{layer}{character layer name}
@@ -14,7 +14,7 @@ query_gis(layer, id_name, ids, crs = albers_conic(),
 
 \item{ids}{feature ids to select}
 
-\item{crs}{character projection info defaults to gis_path_default()}
+\item{crs}{character projection info defaults to lagosnegis_path()}
 
 \item{gis_path}{character path to LAGOSNE GIS gpkg}
 }
@@ -25,10 +25,10 @@ Query LAGOS GIS
 \dontrun{
 
 library(sf)
-st_layers(gis_path_default())
+st_layers(lagosnegis_path())
 
 library(gdalUtils)
-ogrinfo(gis_path_default(), "HU12", so = TRUE)
+ogrinfo(lagosnegis_path(), "HU12", so = TRUE)
 
 library(mapview)
 res_iws <- query_gis("IWS", "lagoslakeid", c(34352))

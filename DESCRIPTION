@@ -4,8 +4,8 @@ Version: 0.1
 Authors@R: person("Joseph", "Stachelek", role = c("aut", "cre"), 
  email = "stachel2@msu.edu")
 Description: Extra Functions to Supplement LAGOSNE.
-Imports: vapour (>= 0.2.0), LAGOSNE, sf, dplyr, nhdR, memoise, rlang, rappdirs
-Depends: R (>= 3.4)
+Imports: vapour (>= 0.2.0), sf, dplyr, nhdR, memoise, rlang, rappdirs, curl, stringr, gdalUtils
+Depends: R (>= 3.4), LAGOSNE
 License: GPL
 Encoding: UTF-8
 LazyData: true

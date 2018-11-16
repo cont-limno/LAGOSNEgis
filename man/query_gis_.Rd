@@ -4,7 +4,7 @@
 \alias{query_gis_}
 \title{Raw (non-vectorized) query of LAGOS GIS}
 \usage{
-query_gis_(gis_path = gis_path_default(), query, crs = albers_conic())
+query_gis_(gis_path = lagosnegis_path(), query, crs = albers_conic())
 }
 \arguments{
 \item{gis_path}{file path}

@@ -3,7 +3,7 @@
 #' @param layer character layer name
 #' @param id_name selection column
 #' @param ids feature ids to select
-#' @param crs character projection info defaults to gis_path_default()
+#' @param crs character projection info defaults to lagosnegis_path()
 #' @param gis_path character path to LAGOSNE GIS gpkg
 #'
 #' @importFrom sf st_geometry st_geometry_type st_cast
@@ -13,10 +13,10 @@
 #' @examples \dontrun{
 #'
 #' library(sf)
-#' st_layers(gis_path_default())
+#' st_layers(lagosnegis_path())
 #'
 #' library(gdalUtils)
-#' ogrinfo(gis_path_default(), "HU12", so = TRUE)
+#' ogrinfo(lagosnegis_path(), "HU12", so = TRUE)
 #'
 #' library(mapview)
 #' res_iws <- query_gis("IWS", "lagoslakeid", c(34352))
@@ -28,7 +28,7 @@
 #' res <- query_gis("HU12", "ZoneID", c("HU12_1"))
 #' }
 query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic(),
-                      gis_path = gis_path_default()){
+                      gis_path = lagosnegis_path()){
   res <- query_gis_(gis_path,
              query = paste0("SELECT * FROM ", layer,
                             " WHERE ", id_name, " IN ('",
@@ -64,7 +64,7 @@ query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic()
 #' crs = LAGOSextra:::albers_conic())
 #' }
 #'
-query_gis_ <- function(gis_path = gis_path_default(), query, crs = albers_conic()){
+query_gis_ <- function(gis_path = lagosnegis_path(), query, crs = albers_conic()){
 
   # error if extent is not NA and query is defined?
 
@@ -119,7 +119,7 @@ query_gis_ <- function(gis_path = gis_path_default(), query, crs = albers_conic(
 #' mapview::mapview(res)
 #'
 #' }
-query_wbd <- memoise::memoise(function(lagoslakeid, gis_path = gis_path_default(),
+query_wbd <- memoise::memoise(function(lagoslakeid, gis_path = lagosnegis_path(),
                       crs = albers_conic(), utm = FALSE){
 
   iws           <- query_gis("IWS", "lagoslakeid", lagoslakeid)
