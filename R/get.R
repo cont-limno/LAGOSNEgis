@@ -31,7 +31,7 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
   pasta_url     <- paste0(pasta_baseurl, "98/1")
 
   files      <- suppressWarnings(paste0(edi_url, "&entityid=",
-                                   readLines(pasta_url)))
+                                        readLines(pasta_url)))
   # file_names <- sapply(files, get_file_names)
   # file_ind <- as.numeric(which(!is.na(file_names)))
   files      <- files[20] # files[file_ind]
@@ -45,12 +45,9 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
                    function(i) get_if_not_exists(files[i], file_paths[i], overwrite)))
 
   message("LAGOSNEgis downloaded. Now converting to gpkg ...")
-  dest_gdb <- file.path(dest_folder,
-                      gsub("_gdb", ".gdb",
-                           stringr::str_extract(as.character(file_names), "(^.*)(?=\\.zip)")))
+  dest_gdb <- file.path(dest_folder, "LAGOS_NE_GIS_Data_v1.0.gdb")
   dir.create(dest_folder, showWarnings = FALSE)
-  dir.create(dest_gdb, showWarnings = FALSE)
-  unzip(file_paths, exdir = dest_gdb)
+  unzip(file_paths, exdir = dest_folder)
   gdalUtils::ogr2ogr(dest_gdb, outpath)
 
   return(invisible(outpath))
