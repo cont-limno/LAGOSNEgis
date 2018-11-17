@@ -105,6 +105,7 @@ query_gis_ <- function(gis_path = lagosnegis_path(), query, crs = albers_conic()
 #'
 #' @importFrom sf st_union st_geometry<- st_crs<- st_buffer
 #' @importFrom memoise memoise
+#' @importFrom nhdR toUTM
 #' @export
 #' @examples \dontrun{
 #' library(mapview)
