@@ -8,6 +8,14 @@
 \description{
 Extra Functions to Supplement LAGOSNE.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/jsta/LAGOSNEgis}
+  \item Report bugs at \url{https://github.com/jsta/LAGOSNEgis/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Joseph Stachelek \email{stachel2@msu.edu}
 

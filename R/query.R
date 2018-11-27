@@ -19,13 +19,15 @@
 #' ogrinfo(lagosnegis_path(), "HU12", so = TRUE)
 #'
 #' library(mapview)
-#' res_iws <- query_gis("IWS", "lagoslakeid", c(34352))
+#' res_iws  <- query_gis("IWS", "lagoslakeid", c(34352))
 #' res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
-#' res_pnt <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
+#' res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
 #' mapview(res_iws) + mapview(res_lake) + mapview(res_pnt)
 #'
 #' res <- query_gis("IWS", "lagoslakeid", c(7010))
 #' res <- query_gis("HU12", "ZoneID", c("HU12_1"))
+#' res <- query_gis("HU8", "ZoneID", c("HU8_100"))
+#' res <- query_gis("HU4", "ZoneID", c("HU4_5"))
 #' }
 query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic(),
                       gis_path = lagosnegis_path()){
@@ -74,7 +76,7 @@ query_gis_ <- function(gis_path = lagosnegis_path(), query, crs = albers_conic()
   # crs <- LAGOSextra:::albers_conic()
   # gis_path <- "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg"
   # st_layers(gis_path)
-  # query <- "SELECT * FROM IWS LIMIT 1"
+  # query <- "SELECT * FROM HU4 LIMIT 1"
   # as.data.frame(vapour_read_attributes(gis_path, sql = query),
   #                      stringsAsFactors = FALSE)
 

@@ -31,12 +31,14 @@ library(gdalUtils)
 ogrinfo(lagosnegis_path(), "HU12", so = TRUE)
 
 library(mapview)
-res_iws <- query_gis("IWS", "lagoslakeid", c(34352))
+res_iws  <- query_gis("IWS", "lagoslakeid", c(34352))
 res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
-res_pnt <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
+res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
 mapview(res_iws) + mapview(res_lake) + mapview(res_pnt)
 
 res <- query_gis("IWS", "lagoslakeid", c(7010))
 res <- query_gis("HU12", "ZoneID", c("HU12_1"))
+res <- query_gis("HU8", "ZoneID", c("HU8_100"))
+res <- query_gis("HU4", "ZoneID", c("HU4_5"))
 }
 }
