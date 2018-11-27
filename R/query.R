@@ -61,17 +61,11 @@ query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic()
 #' @export
 #'
 #' @examples \dontrun{
-#' res <- query_gis_(
-#'    gis_path = LAGOSNEgis:::lagosnegis_path(),
-#'    query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');",
-#'    crs = LAGOSextra:::albers_conic())
+#' res <- query_gis_(query = "SELECT * FROM IWS WHERE lagoslakeid IN ('7010');")
 #'
 #' # query nested hucs
-#' hu4 <- query_gis("HU4", "ZoneID", c("HU4_5"))
-#' hu8s <- query_gis_(
-#'     gis_path = LAGOSNEgis:::lagosnegis_path(),
-#'     query = "SELECT * FROM HU8 WHERE HUC8 LIKE '0415%';",
-#'     crs = LAGOSextra:::albers_conic())
+#' hu4  <- query_gis("HU4", "ZoneID", c("HU4_5"))
+#' hu8s <- query_gis_(query = "SELECT * FROM HU8 WHERE HUC8 LIKE '0415%';")
 #'
 #' }
 #'
