@@ -110,7 +110,6 @@ query_gis_ <- function(gis_path = lagosnegis_path(), query, crs = albers_conic()
 #'
 #' @importFrom sf st_union st_geometry<- st_crs<- st_buffer
 #' @importFrom memoise memoise
-#' @importFrom nhdR toUTM
 #' @export
 #' @examples \dontrun{
 #' library(mapview)
@@ -143,7 +142,7 @@ query_wbd <- memoise::memoise(function(lagoslakeid, gis_path = lagosnegis_path()
   st_geometry(iws) <- res
 
   if(utm){
-    nhdR::toUTM(iws)
+    toUTM(iws)
   }else{
     iws
   }

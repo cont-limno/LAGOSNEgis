@@ -31,3 +31,25 @@ get_if_not_exists <- function(url, destfile, overwrite){
     message(paste0("A local copy of ", url, " already exists on disk"))
   }
 }
+
+#' @importFrom sf st_transform st_crs st_is_longlat st_coordinates st_centroid
+toUTM <- function(sf_object){
+
+  if(is.na(st_crs(sf_object)$epsg)){
+    sf_object <- st_transform(sf_object, crs = 4326)
+  }
+
+  if(sf::st_is_longlat(sf_object)){
+    suppressWarnings(
+      utm_zone <- long2UTM(st_coordinates(st_centroid(st_union(sf_object)))[1]))
+    crs      <- paste0("+proj=utm +zone=", utm_zone, " +datum=WGS84")
+
+    sf::st_transform(sf_object, crs = crs)
+  }else{
+    sf_object
+  }
+}
+
+long2UTM <- function(long) {
+  (floor((long + 180)/6) %% 60) + 1
+}
