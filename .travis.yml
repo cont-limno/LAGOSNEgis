@@ -38,6 +38,7 @@ addons:
       - libproj-dev
       - libgeos-dev
       - libspatialite-dev
+      - libudunits2-dev
 
 #env
 env:
