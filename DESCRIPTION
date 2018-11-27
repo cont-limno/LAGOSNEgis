@@ -5,7 +5,7 @@ Authors@R: person("Joseph", "Stachelek", role = c("aut", "cre"),
  email = "stachel2@msu.edu")
 Description: Extra Functions to Supplement LAGOSNE.
 Imports: vapour (>= 0.2.0), sf, dplyr, memoise, rlang, rappdirs, curl, stringr, gdalUtils
-Remotes: hypertidy/vapour
+Remotes: hypertidy/vapour, cont-limno/LAGOSNE
 Depends: R (>= 3.4), LAGOSNE
 BugReports: https://github.com/jsta/LAGOSNEgis/issues
 URL: https://github.com/jsta/LAGOSNEgis
