@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 ```{r message=FALSE, warning=FALSE}
 library(leaflet)
-library(mapview)
+# library(mapview)
 library(magrittr)
 library(LAGOSNEgis)
 library(sf)
@@ -27,9 +27,9 @@ res_iws  <- query_gis("IWS", "lagoslakeid", c(34352))
 res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
 res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
 
-mapview(res_iws, col.regions = "darkgreen") + 
-  mapview(res_lake, col.regions = "yellow") + 
-  mapview(res_pnt, col.regions = "blue")
+# mapview(res_iws, col.regions = "darkgreen") + 
+#   mapview(res_lake, col.regions = "yellow") + 
+#   mapview(res_pnt, col.regions = "blue")
 ```
 
 
