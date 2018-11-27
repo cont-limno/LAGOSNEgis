@@ -29,6 +29,16 @@ dist: trusty
 cache: packages
 latex: false
 
+addons:
+  apt:
+    sources:
+      - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
+    packages:
+      - libgdal-dev
+      - libproj-dev
+      - libgeos-dev
+      - libspatialite-dev
+
 #env
 env:
   global:
