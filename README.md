@@ -32,7 +32,6 @@ remotes::install_github("jsta/LAGOSNEgis")
 
 ``` r
 library(LAGOSNEgis)
-#> Loading required package: LAGOSNE
 ```
 
 ### Download data
@@ -47,32 +46,6 @@ lagosnegis_get()
 library(sf)
 sf::st_layers(LAGOSNEgis:::lagosnegis_path())
 ```
-
-| name                                       | driver | features | fields |
-| :----------------------------------------- | :----- | -------: | -----: |
-| HU8                                        | GPKG   |      511 |     15 |
-| HU4                                        | GPKG   |       65 |     15 |
-| HU12                                       | GPKG   |    20257 |     14 |
-| EDU                                        | GPKG   |       91 |     12 |
-| LAGOS\_NE\_Study\_Extent                   | GPKG   |        1 |      2 |
-| COUNTY                                     | GPKG   |      955 |     11 |
-| Stream\_Polylines                          | GPKG   |  4014384 |     18 |
-| LAGOS\_NE\_All\_Lakes\_1ha                 | GPKG   |   141265 |     34 |
-| LAGOS\_NE\_All\_Lakes\_4ha                 | GPKG   |    51101 |     34 |
-| LAGOS\_NE\_All\_Lakes\_1ha\_POINTS         | GPKG   |   141265 |     32 |
-| LAGOS\_NE\_All\_Lakes\_4ha\_POINTS         | GPKG   |    51101 |     32 |
-| LAGOS\_NE\_All\_Lakes\_4ha\_Buffered\_100m | GPKG   |    51101 |     16 |
-| LAGOS\_NE\_All\_Lakes\_4ha\_Buffered\_500m | GPKG   |    51101 |     16 |
-| Glaciation                                 | GPKG   |        2 |      3 |
-| Wetlands                                   | GPKG   |  4403964 |     14 |
-| Stream\_Polygons                           | GPKG   |    31239 |     10 |
-| IWS                                        | GPKG   |    51071 |     14 |
-| Border\_HU12                               | GPKG   |      169 |     14 |
-| Border\_IWS                                | GPKG   |      170 |     13 |
-| STATE                                      | GPKG   |       17 |     11 |
-| US\_Canada\_Border                         | GPKG   |        1 |      1 |
-| HU2                                        | GPKG   |       22 |     15 |
-| LAGOS\_NE\_NHDReachCrossReference          | GPKG   |   404414 |     12 |
 
 ### Query from a specfic layer
 

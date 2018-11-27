@@ -34,7 +34,7 @@ remotes::install_github("jsta/LAGOSNEgis")
 
 ## Usage
 
-```{r }
+```{r eval=FALSE}
 library(LAGOSNEgis)
 ```
 
@@ -51,7 +51,7 @@ library(sf)
 sf::st_layers(LAGOSNEgis:::lagosnegis_path())
 ```
 
-```{r echo=FALSE}
+```{r eval = FALSE, echo=FALSE}
 ly <- sf::st_layers(LAGOSNEgis:::lagosnegis_path())
 knitr::kable(data.frame(ly[c("name", "driver", "features", "fields")]))
 ```
