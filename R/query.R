@@ -67,6 +67,10 @@ query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic()
 #' hu4  <- query_gis("HU4", "ZoneID", c("HU4_5"))
 #' hu8s <- query_gis_(query = "SELECT * FROM HU8 WHERE HUC8 LIKE '0415%';")
 #'
+#' # query multiple nested hucs
+#' hu4s  <- query_gis("HU4", "ZoneID", c("HU4_5", "HU4_6"))
+#' hu8s  <- query_gis_(query = paste0("SELECT * FROM HU8 WHERE ",
+#'             paste0("HUC8 LIKE '", hu4s$HUC4, "%'", collapse = " OR ")))
 #' }
 #'
 query_gis_ <- function(gis_path = lagosnegis_path(), query, crs = albers_conic()){
