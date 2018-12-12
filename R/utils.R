@@ -53,3 +53,14 @@ toUTM <- function(sf_object){
 long2UTM <- function(long) {
   (floor((long + 180)/6) %% 60) + 1
 }
+
+has_7z <- function(){
+  paths_7z <- c("7z",
+                "~/usr/bin/7z",
+                "C:\\PROGRA~1\\7-Zip\\7za")
+  if(!any(nchar(Sys.which(paths_7z)) > 0)){
+    FALSE
+  }else{
+    TRUE
+  }
+}
