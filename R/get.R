@@ -42,7 +42,15 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
   file_paths  <- file.path(local_dir, file_names)
 
   invisible(lapply(seq_len(length(files)),
-                   function(i) get_if_not_exists(files[i], file_paths[i], overwrite)))
+                   function(i) get_if_not_exists(files[i], file_paths[i],
+                                                 overwrite)))
+
+  # browser()
+  # if(Sys.info()["sysname"] == "Windows"){
+  #   system(paste0("7za.exe e ", destfile, " -o", destsubdir))
+  # }else{
+  #   system(paste0("7z e ", destfile, " -o", destsubdir))
+  # }
 
   message("LAGOSNEgis downloaded. Now converting to gpkg ...")
   dest_gdb <- file.path(dest_folder, "LAGOS_NE_GIS_Data_v1.0.gdb")
