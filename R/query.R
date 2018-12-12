@@ -102,6 +102,10 @@ query_gis_ <- function(gis_path = lagosnegis_path(), query, crs = albers_conic()
   dat                  <- dplyr::select(dat, -.data$wkt)
   sf::st_crs(dat)      <- sf::st_crs(crs)
 
+  if(any(unique(sf::st_geometry_type(sf::st_geometry(dat))) == "MULTISURFACE")){
+    dat <- sf::st_cast(dat, "MULTIPOLYGON")
+  }
+
   sf::st_zm(dat)
 }
 
