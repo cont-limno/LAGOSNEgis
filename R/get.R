@@ -45,13 +45,11 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
                    function(i) get_if_not_exists(files[i], file_paths[i],
                                                  overwrite)))
 
-  # browser()
-  # system(paste0(has_7z()$path, " e ", destfile, " -o", destsubdir))
-
   message("LAGOSNEgis downloaded. Now converting to gpkg ...")
   dest_gdb <- file.path(dest_folder, "LAGOS_NE_GIS_Data_v1.0.gdb")
   dir.create(dest_folder, showWarnings = FALSE)
-  unzip(file_paths, exdir = dest_folder)
+  system(paste0(has_7z()$path, " e ", file_paths, " -o",
+                dest_gdb))
   gdalUtils::ogr2ogr(dest_gdb, outpath)
 
   return(invisible(outpath))
