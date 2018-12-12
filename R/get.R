@@ -46,11 +46,7 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
                                                  overwrite)))
 
   # browser()
-  # if(Sys.info()["sysname"] == "Windows"){
-  #   system(paste0("7za.exe e ", destfile, " -o", destsubdir))
-  # }else{
-  #   system(paste0("7z e ", destfile, " -o", destsubdir))
-  # }
+  # system(paste0(has_7z()$path, " e ", destfile, " -o", destsubdir))
 
   message("LAGOSNEgis downloaded. Now converting to gpkg ...")
   dest_gdb <- file.path(dest_folder, "LAGOS_NE_GIS_Data_v1.0.gdb")
