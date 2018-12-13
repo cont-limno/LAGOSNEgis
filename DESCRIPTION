@@ -18,5 +18,6 @@ Suggests:
     rmarkdown,
     leaflet,
     magrittr,
-    ggplot2
+    ggplot2,
+    gdalUtils
 VignetteBuilder: knitr
