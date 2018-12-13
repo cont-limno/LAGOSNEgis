@@ -4,7 +4,7 @@
 #'
 #' @export
 #' @importFrom utils unzip download.file
-#' @importFrom gdalUtils ogr2ogr
+#' @importFrom gdalUtilities ogr2ogr
 #' @param dest_folder file.path defaults to lagosnegis_path()
 #' @param overwrite logical
 #' @references Soranno P., K. Cheruvelil. 2017. LAGOS-NE-GIS v1.0: A module for
