@@ -35,7 +35,7 @@ query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic()
              query = paste0("SELECT * FROM ", layer,
                             " WHERE ", id_name, " IN ('",
                             paste0(ids,
-                                   collapse = "', '"), "');"), crs = crs)
+                                   collapse = "', '"), "')"), crs = crs)
 
   # sort items by ids
   res <- res[match(ids, data.frame(res[,id_name])[,id_name]),]
@@ -80,7 +80,7 @@ query_gis_ <- function(gis_path = lagosnegis_path(), query, crs = albers_conic()
   # investigate specific layers
   # library(sf)
   # library(vapour)
-  # crs <- LAGOSextra:::albers_conic()
+  # crs <- LAGOSNEgis:::albers_conic()
   # gis_path <- "/home/jose/.local/share/LAGOS-GIS/lagos-ne_gis.gpkg"
   # st_layers(gis_path)
   # query <- "SELECT * FROM HU4 LIMIT 1"

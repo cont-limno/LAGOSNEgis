@@ -18,7 +18,10 @@
 #' lagosnegis_get()
 #' }
 lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
+  # dest_folder <- LAGOSNEgis:::lagosnegis_path()
   outpath <- file.path(dest_folder, "lagos-ne_gis.gpkg")
+  dest_gdb <- file.path(dest_folder, "LAGOS_NE_GIS_Data_v1.0.gdb")
+
   if(file.exists(outpath) & !overwrite){
     warning("LAGOSNEgis data already exists on the local machine.
   Re-download if neccessary using the 'overwrite` argument.'")
@@ -46,11 +49,22 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
                                                  overwrite)))
 
   message("LAGOSNEgis downloaded. Now converting to gpkg ...")
-  dest_gdb <- file.path(dest_folder, "LAGOS_NE_GIS_Data_v1.0.gdb")
   dir.create(dest_folder, showWarnings = FALSE)
+  unlink(dest_gdb, recursive = TRUE)
   system(paste0(has_7z()$path, " e ", file_paths, " -o",
                 dest_gdb))
-  gdalUtils::ogr2ogr(dest_gdb, outpath)
+
+  unlink(outpath, recursive = TRUE)
+  gdalUtilities::ogr2ogr(dest_gdb, outpath, dim = 2,
+                         overwrite = TRUE,
+                         nlt = "PROMOTE_TO_MULTI", f = "GPKG")
+
+  gdalUtilities::ogr2ogr(dest_gdb, outpath, dim = 2,
+                         sql = "select *, cast(Shape_Area as numeric(30,5)) as Shape_Area from IWS",
+                         dialect = "ogrsql", overwrite = TRUE, f = "GPKG")
+
+  # gdalUtils::ogrinfo(lagosnegis_path(), so = TRUE, sql = 'select * from IWS limit 1')
+  # gdalUtils::ogrinfo(lagosnegis_path())
 
   return(invisible(outpath))
 }
