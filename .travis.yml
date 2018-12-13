@@ -39,6 +39,7 @@ addons:
       - libgeos-dev
       - libspatialite-dev
       - libudunits2-dev
+      - p7zip-full
 
 #env
 env:
