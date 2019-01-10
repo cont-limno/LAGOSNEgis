@@ -69,3 +69,28 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
   return(invisible(outpath))
 }
 
+get_xwalk <- function(){
+  t_file <- tempfile(fileext = ".csv")
+  gh_file(owner = "cont-limno", repo = "LAGOS_Lake_Link",
+          path = "LAGOS_Lake_Link_v0.csv",
+          destfile = t_file)
+
+  xwalk <- read.csv(t_file,
+                    stringsAsFactors = FALSE)
+  saveRDS(xwalk, file.path(lagosnegis_dir(), "xwalk.rds"))
+}
+
+#' Load cross walk table between LAGOSNE and NHD
+#'
+#' @importFrom utils read.csv
+#' @export
+#' @examples \dontrun{
+#' xwalk <- load_xwalk()
+#' }
+load_xwalk <- memoise::memoise(function(){
+  xwalk_path <- file.path(lagosnegis_dir(), "xwalk.rds")
+  if(!file.exists(xwalk_path)){
+    get_xwalk()
+  }
+  readRDS(xwalk_path)
+})
