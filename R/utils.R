@@ -3,6 +3,9 @@ albers_conic <- function(){
   "+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=23 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs"
 }
 
+#' Get the path to LAGOSNEgis data
+#'
+#' @export
 lagosnegis_path <- function(){
   file.path(rappdirs::user_data_dir("LAGOS-GIS"), "lagos-ne_gis.gpkg")
 }
