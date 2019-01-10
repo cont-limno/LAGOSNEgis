@@ -4,7 +4,7 @@
 \alias{query_gis}
 \title{Query LAGOS GIS}
 \usage{
-query_gis(layer, id_name, ids, crs = albers_conic(),
+query_gis(layer, id_name = NULL, ids = NULL, crs = albers_conic(),
   gis_path = lagosnegis_path())
 }
 \arguments{
@@ -30,11 +30,14 @@ st_layers(lagosnegis_path())
 library(gdalUtils)
 ogrinfo(lagosnegis_path(), "HU12", so = TRUE)
 
+states   <- query_gis("STATE")
+
 library(mapview)
+state    <- query_gis("STATE", "State_Name", "Michigan")
 res_iws  <- query_gis("IWS", "lagoslakeid", c(34352))
 res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
 res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
-mapview(res_iws) + mapview(res_lake) + mapview(res_pnt)
+mapview(state) + mapview(res_iws) + mapview(res_lake) + mapview(res_pnt)
 
 res <- query_gis("IWS", "lagoslakeid", c(7010))
 res <- query_gis("HU12", "ZoneID", c("HU12_1"))

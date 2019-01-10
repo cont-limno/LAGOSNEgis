@@ -18,27 +18,36 @@
 #' library(gdalUtils)
 #' ogrinfo(lagosnegis_path(), "HU12", so = TRUE)
 #'
+#' states   <- query_gis("STATE")
+#'
 #' library(mapview)
+#' state    <- query_gis("STATE", "State_Name", "Michigan")
 #' res_iws  <- query_gis("IWS", "lagoslakeid", c(34352))
 #' res_lake <- query_gis("LAGOS_NE_All_Lakes_4ha", "lagoslakeid", 34352)
 #' res_pnt  <- query_gis("LAGOS_NE_All_Lakes_4ha_POINTS", "lagoslakeid", 34352)
-#' mapview(res_iws) + mapview(res_lake) + mapview(res_pnt)
+#' mapview(state) + mapview(res_iws) + mapview(res_lake) + mapview(res_pnt)
 #'
 #' res <- query_gis("IWS", "lagoslakeid", c(7010))
 #' res <- query_gis("HU12", "ZoneID", c("HU12_1"))
 #' res <- query_gis("HU8", "ZoneID", c("HU8_100"))
 #' res <- query_gis("HU4", "ZoneID", c("HU4_5"))
 #' }
-query_gis <- memoise::memoise(function(layer, id_name, ids, crs = albers_conic(),
-                      gis_path = lagosnegis_path()){
-  res <- query_gis_(gis_path,
-             query = paste0("SELECT * FROM ", layer,
-                            " WHERE ", id_name, " IN ('",
-                            paste0(ids,
-                                   collapse = "', '"), "')"), crs = crs)
+query_gis <- memoise::memoise(function(layer, id_name = NULL, ids = NULL,
+                                       crs = albers_conic(),
+                                       gis_path = lagosnegis_path()){
 
-  # sort items by ids
-  res <- res[match(ids, data.frame(res[,id_name])[,id_name]),]
+  if(all(is.null(id_name), is.null(ids))){
+    res <- sf::st_read(gis_path, layer = layer)
+  }else{
+    res <- query_gis_(gis_path,
+               query = paste0("SELECT * FROM ", layer,
+                              " WHERE ", id_name, " IN ('",
+                              paste0(ids,
+                                     collapse = "', '"), "')"), crs = crs)
+
+    # sort items by ids
+    res <- res[match(ids, data.frame(res[,id_name])[,id_name]),]
+  }
 
   if(any(unique(sf::st_geometry_type(sf::st_geometry(res))) == "MULTISURFACE")){
     res <- sf::st_cast(res, "MULTIPOLYGON")
