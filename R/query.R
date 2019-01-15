@@ -31,6 +31,9 @@
 #' res <- query_gis("HU12", "ZoneID", c("HU12_1"))
 #' res <- query_gis("HU8", "ZoneID", c("HU8_100"))
 #' res <- query_gis("HU4", "ZoneID", c("HU4_5"))
+#'
+#' # query mutiple feature ids
+#' res <- query_gis("IWS", "lagoslakeid", c(7010, 1))
 #' }
 query_gis <- memoise::memoise(function(layer, id_name = NULL, ids = NULL,
                                        crs = albers_conic(),
