@@ -1,6 +1,6 @@
 Package: LAGOSNEgis
 Title: Extra functions to interact with the GIS module of LAGOSNE
-Version: 0.1
+Version: 0.1.0
 Authors@R: person("Joseph", "Stachelek", role = c("aut", "cre"), 
  email = "stachel2@msu.edu")
 Description: Extra Functions to Supplement LAGOSNE.
@@ -34,3 +34,4 @@ Suggests:
     ggplot2,
     gdalUtils
 VignetteBuilder: knitr
+Language: en-US
