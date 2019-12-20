@@ -7,7 +7,7 @@ albers_conic <- function(){
 #'
 #' @export
 lagosnegis_path <- function(){
-  file.path(rappdirs::user_data_dir("LAGOS-GIS"), "lagos-ne_gis.gpkg")
+  file.path(rappdirs::user_data_dir("LAGOS-GIS"), "LAGOSNE_GIS_Data_v1.0.gdb")
 }
 
 lagosnegis_dir <- function(){
