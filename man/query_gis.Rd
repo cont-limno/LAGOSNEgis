@@ -4,8 +4,13 @@
 \alias{query_gis}
 \title{Query LAGOS GIS}
 \usage{
-query_gis(layer, id_name = NULL, ids = NULL, crs = albers_conic(),
-  gis_path = lagosnegis_path())
+query_gis(
+  layer,
+  id_name = NULL,
+  ids = NULL,
+  crs = albers_conic(),
+  gis_path = lagosnegis_path()
+)
 }
 \arguments{
 \item{layer}{character layer name}

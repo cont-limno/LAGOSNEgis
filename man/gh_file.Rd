@@ -4,10 +4,20 @@
 \alias{gh_file}
 \title{Gets a file from a github repo, using the Data API blob endpoint}
 \usage{
-gh_file(url = NULL, ref = NULL, owner = NULL, repo = NULL,
-  path = NULL, to_disk = TRUE, destfile = NULL, .token = NULL,
-  .api_url = NULL, .method = "GET", .limit = NULL,
-  .send_headers = NULL)
+gh_file(
+  url = NULL,
+  ref = NULL,
+  owner = NULL,
+  repo = NULL,
+  path = NULL,
+  to_disk = TRUE,
+  destfile = NULL,
+  .token = NULL,
+  .api_url = NULL,
+  .method = "GET",
+  .limit = NULL,
+  .send_headers = NULL
+)
 }
 \arguments{
 \item{url}{the URL of the file to download via API, of the form
