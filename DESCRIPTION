@@ -17,11 +17,12 @@ Imports:
     stringi,
     gh,
     purrr,
-    base64enc
-Remotes: hypertidy/vapour, cont-limno/LAGOSNE, JoshOBrien/gdalUtilities
+    base64enc, 
+    LAGOSNE
+Remotes: hypertidy/vapour, JoshOBrien/gdalUtilities
 Depends: R (>= 3.4), LAGOSNE
-BugReports: https://github.com/jsta/LAGOSNEgis/issues
-URL: https://github.com/jsta/LAGOSNEgis
+BugReports: https://github.com/cont-limno/LAGOSNEgis/issues
+URL: https://github.com/cont-limno/LAGOSNEgis
 License: GPL
 Encoding: UTF-8
 LazyData: true

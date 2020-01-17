@@ -4,11 +4,11 @@
 # LAGOSNEgis
 
 [![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/LAGOSNEgis)](https://cran.r-project.org/package=LAGOSNEgis)
 [![Travis build
-status](https://travis-ci.org/jsta/LAGOSNEgis.svg?branch=master)](https://travis-ci.org/jsta/LAGOSNEgis)
+status](https://travis-ci.org/cont-limno/LAGOSNEgis.svg?branch=master)](https://travis-ci.org/cont-limno/LAGOSNEgis)
 [![DOI](https://zenodo.org/badge/106293356.svg)](https://zenodo.org/badge/latestdoi/106293356)
 
 Extra functions to interact with the GIS module of LAGOSNE.
@@ -27,7 +27,7 @@ Extra functions to interact with the GIS module of LAGOSNE.
 ## Installation
 
 ``` r
-remotes::install_github("jsta/LAGOSNEgis")
+remotes::install_github("cont-limno/LAGOSNEgis")
 ```
 
 ## Usage

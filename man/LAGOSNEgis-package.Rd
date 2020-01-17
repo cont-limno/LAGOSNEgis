@@ -11,8 +11,8 @@ Extra Functions to Supplement LAGOSNE.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/jsta/LAGOSNEgis}
-  \item Report bugs at \url{https://github.com/jsta/LAGOSNEgis/issues}
+  \item \url{https://github.com/cont-limno/LAGOSNEgis}
+  \item Report bugs at \url{https://github.com/cont-limno/LAGOSNEgis/issues}
 }
 
 }
