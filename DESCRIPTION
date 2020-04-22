@@ -17,8 +17,7 @@ Imports:
     stringi,
     gh,
     purrr,
-    base64enc, 
-    LAGOSNE
+    base64enc
 Remotes: hypertidy/vapour, JoshOBrien/gdalUtilities
 Depends: R (>= 3.4), LAGOSNE
 BugReports: https://github.com/cont-limno/LAGOSNEgis/issues
