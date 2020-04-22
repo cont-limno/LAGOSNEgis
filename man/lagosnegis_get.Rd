@@ -4,12 +4,18 @@
 \alias{lagosnegis_get}
 \title{Get LAGOSNEgis data}
 \usage{
-lagosnegis_get(dest_folder = lagosnegis_dir(), overwrite = FALSE)
+lagosnegis_get(
+  dest_folder = lagosnegis_dir(),
+  overwrite = FALSE,
+  cleanup = TRUE
+)
 }
 \arguments{
 \item{dest_folder}{file.path defaults to lagosnegis_path()}
 
 \item{overwrite}{logical}
+
+\item{cleanup}{logical. Delete intermediate file downloads?}
 }
 \description{
 Get data from the GIS module of LAGOSNE

@@ -9,3 +9,6 @@ lagosnegis_path()
 \description{
 Get the path to LAGOSNEgis data
 }
+\details{
+Can be overridden with the LAGOSNEGIS_PATH environment variable
+}
