@@ -7,6 +7,7 @@
 #' @importFrom gdalUtilities ogr2ogr
 #' @param dest_folder file.path defaults to lagosnegis_path()
 #' @param overwrite logical
+#' @param cleanup logical. Delete intermediate file downloads?
 #' @references Soranno P., K. Cheruvelil. 2017. LAGOS-NE-GIS v1.0: A module for
 #'  LAGOS-NE, a multi-scaled geospatial and temporal database of lake
 #'  ecological context and water quality for thousands of U.S. Lakes:
@@ -17,7 +18,8 @@
 #' @examples \dontrun{
 #' lagosnegis_get()
 #' }
-lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
+lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE,
+                           cleanup = TRUE){
   # dest_folder <- LAGOSNEgis:::lagosnegis_path()
   dest_gdb <- file.path(dest_folder, "LAGOSNE_GIS_Data_v1.0.gdb")
 
@@ -49,11 +51,13 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE){
 
   message("LAGOSNEgis downloaded. Now unzipping ...")
   dir.create(dest_folder, showWarnings = FALSE)
-  unlink(dest_gdb, recursive = TRUE)
-  system(
+  if(cleanup){
+    unlink(dest_gdb, recursive = TRUE)
+  }
+  invisible(system(
     paste0(has_7z()$path, " e ", file_paths, " -o",
-                dest_gdb)
-    )
+                dest_gdb),
+    intern = TRUE))
 
   # gdalUtils::ogrinfo(lagosnegis_path(), so = TRUE, sql = 'select * from IWS limit 1')
   # gdalUtils::ogrinfo(lagosnegis_path())
