@@ -5,9 +5,15 @@ albers_conic <- function(){
 
 #' Get the path to LAGOSNEgis data
 #'
+#' @details Can be overridden with the LAGOSNEGIS_PATH environment variable
+#'
 #' @export
 lagosnegis_path <- function(){
-  file.path(rappdirs::user_data_dir("LAGOS-GIS"), "LAGOSNE_GIS_Data_v1.0.gdb")
+  if(nchar(Sys.getenv("LAGOSNEGIS_PATH")) > 0){
+    Sys.getenv("LAGOSNEGIS_PATH")
+  }else{
+    file.path(rappdirs::user_data_dir("LAGOS-GIS"), "LAGOSNE_GIS_Data_v1.0.gdb")
+  }
 }
 
 lagosnegis_dir <- function(){
