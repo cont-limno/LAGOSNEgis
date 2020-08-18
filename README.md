@@ -4,7 +4,7 @@
 # LAGOSNEgis
 
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/LAGOSNEgis)](https://cran.r-project.org/package=LAGOSNEgis)
 [![Travis build
