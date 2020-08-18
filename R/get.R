@@ -31,11 +31,12 @@ lagosnegis_get <- function(dest_folder = lagosnegis_dir(), overwrite = FALSE,
 
   edi_baseurl   <- "https://portal.edirepository.org/nis/dataviewer?packageid="
   pasta_baseurl <- "http://pasta.lternet.edu/package/data/eml/edi/"
-  edi_url       <- paste0(edi_baseurl, c("edi.98.1"))
-  pasta_url     <- paste0(pasta_baseurl, "98/1")
+  edi_url       <- paste0(edi_baseurl, c("edi.98.4"))
+  pasta_url     <- paste0(pasta_baseurl, "98/4")
 
   files      <- suppressWarnings(paste0(edi_url, "&entityid=",
                                         readLines(pasta_url)))
+
   # file_names <- sapply(files, get_file_names)
   # file_ind <- as.numeric(which(!is.na(file_names)))
   files      <- files[20] # files[file_ind]

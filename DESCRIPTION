@@ -1,6 +1,6 @@
 Package: LAGOSNEgis
 Title: Extra functions to interact with the GIS module of LAGOSNE
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Joseph", "Stachelek", role = c("aut", "cre"), 
  email = "stachel2@msu.edu")
 Description: Extra Functions to Supplement LAGOSNE.
