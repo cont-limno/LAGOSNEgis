@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Joseph Stachelek \email{stachel2@msu.edu}
+\strong{Maintainer}: Jemma Stachelek \email{stachel2@msu.edu}
 
 }
 \keyword{internal}

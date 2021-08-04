@@ -15,13 +15,13 @@ Extra functions to interact with the GIS module of LAGOSNE.
 
 ## Features
 
-  - **Easy**: Convenience functions allow for straight-forward
+-   **Easy**: Convenience functions allow for straight-forward
     subsetting.
 
-  - **Fast**: Queries are optimized for speed to avoid loading the
+-   **Fast**: Queries are optimized for speed to avoid loading the
     entirety of massive layers.
 
-  - **Flexible** : Custom queries can be constructed using `SQL`
+-   **Flexible** : Custom queries can be constructed using `SQL`
     statements.
 
 ## Installation
